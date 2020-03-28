@@ -2,16 +2,24 @@
 
 use strict;
 
-if ($ARGV[1]) {
-    print "Error only one directory allowed.\n";
-    exit;
-}
-
 my $dir = "./";
+my $LFlag = 0;
+my $lFlag = 0;
 
-$dir = $ARGV[0] if defined $ARGV[0];
-
-print "Directory: $dir\n";
-
-
+foreach my $var(@ARGV){
+    if (($var =~ /-.n*([^lL])/)) {
+	print "myls: invalid option $1.\n";
+	exit;
+    }
+    if(($var =~ /-.*[l]/)){
+	$lFlag = 1;
+    }
+    if(($var =~ /-.*[L]/)){
+	$LFlag = 1;
+    }
+    if(($var =~ /^[^-].+/)){
+	$dir = $var;
+    }
+}
+print "Lflag:$LFlag\nlFlag:$lFlag\ndir:$dir\n";
 
