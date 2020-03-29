@@ -25,7 +25,7 @@ foreach my $var(@ARGV){
     }
 }
 
-print "Lflag:$LFlag\nlFlag:$lFlag\ndir:$dir\n\n";
+#print "Lflag:$LFlag\nlFlag:$lFlag\ndir:$dir\n\n";
 
 opendir(my $dh, $dir) || die "Can't opendir $dir: $!";
 my @dots = grep {/^[^.].*/ && "$dir/$_"} readdir($dh);
@@ -36,7 +36,16 @@ foreach my $thing (sort @dots){
     my $mode = $sb->mode;
     my $lsmode = file_mode("$dir/$thing");
     my $ownername = getpwuid((stat("$dir/$thing"))[4]);
+    
+    if(($lFlag == 1) && ($LFlag ==1)){
+	printf ("%-30s %-10s %-19s %-10s %-10s\n",$thing, $size, $time, $lsmode, $ownername);	
+    }elsif(($lFlag == 1) && ($LFlag ==0)){
+	printf ("%-30s %-10s %-19s %-10s\n",$thing, $size, $time, $lsmode);	
+    }elsif(($lFlag == 0) && ($LFlag ==1)){
+	printf ("%-30s %-10s\n",$thing, $ownername);	
+    }else{
+	printf ("%-30s\n",$thing);	
+    }
 
-    print "$thing\t$size\t$time\t$lsmode\t$ownername\n";
 }
 closedir $dh;
