@@ -1,5 +1,6 @@
 # PwJslab0
 Wywołanie programu:
+
 $ perl myls.py
 
 $ perl myls.py -l
