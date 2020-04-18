@@ -1,10 +1,10 @@
 # PwJslab01
 Wywołanie programu:
 
-$ perl myls.py
+$ perl myls.pl
 
-$ perl myls.py -l
+$ perl myls.pl -l
 
-$ perl myls.py -L
+$ perl myls.pl -L
 
-$ perl myls.py -Ll
+$ perl myls.pl -Ll
